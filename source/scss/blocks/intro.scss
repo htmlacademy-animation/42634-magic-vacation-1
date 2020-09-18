@@ -1,3 +1,15 @@
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes FadeInAnimation {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
 .intro {
   display: flex;
   flex-direction: column;
@@ -114,7 +126,7 @@
   }
 
   p {
-    transition: opacity 1.2s ease-in-out;
+    animation: FadeInAnimation 1.2s linear;
     margin: 0;
   }
 
