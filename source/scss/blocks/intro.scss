@@ -8,6 +8,16 @@
       opacity: 1;
     }
   }
+
+  @keyframes MoveTopAnimation {
+    from {
+      transform: translateY(8px);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
 }
 
 .intro {
@@ -126,7 +136,7 @@
   }
 
   p {
-    animation: FadeInAnimation 1.2s linear;
+    animation: FadeInAnimation 1.2s linear, MoveTopAnimation 1s ease-out;
     margin: 0;
   }
 
