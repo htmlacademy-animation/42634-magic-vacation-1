@@ -1290,7 +1290,7 @@ img {
 @media (prefers-reduced-motion: no-preference) {
   @keyframes MoveLeftAnimation {
     from {
-      transform: translateX(40px); }
+      transform: translateX(2.5rem); }
     to {
       transform: translateX(0); } } }
 
@@ -1335,7 +1335,7 @@ img {
   border: 0;
   border-radius: 3rem;
   outline: none;
-  animation: MoveLeftAnimation 0.6s linear; }
+  animation: MoveLeftAnimation 0.4s linear; }
   .form__field:focus {
     border: 1px solid #a67ee5; }
   @media (min-width: 2000px) {
@@ -1530,7 +1530,7 @@ img {
       opacity: 1; } }
   @keyframes MoveTopAnimation {
     from {
-      transform: translateY(8px); }
+      transform: translateY(0.6rem); }
     to {
       transform: translateY(0); } } }
 
@@ -1899,7 +1899,8 @@ img {
           right: 0;
           background-color: #5f458c; } }
     .page-header__menu a.active::after {
-      display: block; }
+      display: block;
+      width: 100%; }
     .page-header__menu a:hover, .page-header__menu a:focus {
       color: #a67ee5;
       outline: none; }
@@ -2972,8 +2973,7 @@ img {
   margin-bottom: 0;
   max-width: 34rem;
   font-size: 1.8rem;
-  line-height: 2rem;
-  animation: FadeInAnimation 0.7s linear, MoveTopAnimation 0.7s ease-out; }
+  line-height: 2rem; }
   @media (min-width: 2000px) {
     .slider__item-text {
       margin-top: 36px;
@@ -2998,6 +2998,10 @@ img {
       min-height: 14rem;
       font-size: 1.4rem;
       line-height: 1.5rem; } }
+
+.swiper-slide-active .slider__item-text,
+.swiper-slide-next .slider__item-text {
+  animation: FadeInAnimation 0.7s linear, MoveTopAnimation 0.7s ease-out; }
 
 .slider__controls {
   position: absolute;
