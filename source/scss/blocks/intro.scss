@@ -1,3 +1,25 @@
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes FadeInAnimation {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes MoveTopAnimation {
+    from {
+      transform: translateY(0.6rem);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
 .intro {
   display: flex;
   flex-direction: column;
@@ -114,6 +136,7 @@
   }
 
   p {
+    animation: FadeInAnimation 0.7s linear, MoveTopAnimation 0.7s ease-out;
     margin: 0;
   }
 
