@@ -1,3 +1,13 @@
+@keyframes MoveTopFooter {
+  from {
+    transform: translateY(3.5rem);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
 .screen {
   position: relative;
   display: flex;
@@ -46,6 +56,12 @@
   color: $c-dark;
   background-color: $c-light;
   z-index: 1;
+
+  .loaded & {
+    animation-name: MoveTopFooter;
+    animation-fill-mode: both;
+    animation-duration: 0.4s;
+  }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     width: 3.5rem;

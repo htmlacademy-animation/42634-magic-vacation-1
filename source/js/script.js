@@ -23,7 +23,7 @@ const pageBody = document.querySelector(`body`);
 
 const onLoadPage = () => {
   pageBody.classList.add(`loaded`);
-}
+};
 
 document.addEventListener(`load`, onLoadPage());
 
