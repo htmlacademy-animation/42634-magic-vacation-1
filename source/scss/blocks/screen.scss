@@ -1,10 +1,12 @@
-@keyframes MoveTopFooter {
-  from {
-    transform: translateY(3.5rem);
-  }
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes MoveTopFooter {
+    from {
+      transform: translateY(3.5rem);
+    }
 
-  to {
-    transform: translateY(0);
+    to {
+      transform: translateY(0);
+    }
   }
 }
 
