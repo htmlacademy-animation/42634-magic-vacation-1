@@ -50,6 +50,15 @@
   z-index: 1;
 }
 
+.screen__background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  background-color: $c-dark;
+  transform: translateY(100%);
+}
+
 .screen__footer {
   position: absolute;
   bottom: 0;
