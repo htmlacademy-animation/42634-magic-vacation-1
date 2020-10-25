@@ -1,5 +1,7 @@
 import throttle from 'lodash/throttle';
 
+const PRIZES_SHOWING_DELAY = 400;
+
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 2000;
@@ -7,6 +9,7 @@ export default class FullPageScroll {
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
     this.backgroundScreen = document.querySelector(`.screen__background`);
+    this.prizesScreen = document.querySelector(`.screen--prizes`);
 
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
@@ -47,6 +50,14 @@ export default class FullPageScroll {
     });
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
     this.screenElements[this.activeScreen].classList.add(`active`);
+
+    if (this.backgroundScreen.classList.contains(`active`)) {
+      this.backgroundScreen.classList.remove(`active`);
+      setTimeout(()=> {
+        this.prizesScreen.classList.remove(`screen--hidden`);
+        this.prizesScreen.classList.add(`active`);
+      }, PRIZES_SHOWING_DELAY);
+    }
   }
 
   changeActiveMenuItem() {
