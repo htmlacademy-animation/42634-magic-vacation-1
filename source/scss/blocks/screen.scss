@@ -51,13 +51,13 @@
 }
 
 .screen__background {
-  content: "";
+  display: block;
   position: fixed;
   z-index: 0;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 0%;
+  height: 100%;
   background-color: $c-dark;
   animation-name: MoveTop;
   animation-fill-mode: both;
