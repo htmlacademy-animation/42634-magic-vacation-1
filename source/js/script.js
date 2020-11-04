@@ -33,3 +33,15 @@ if (pageBody.classList.contains(`loaded`)) {
 
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
+
+const rulesText = document.querySelectorAll(`.rules__item p`);
+
+for (let i = 0; i < rulesText.length; i++) {
+  const rulesLink = document.querySelector(`.rules__link`);
+
+  rulesText[rulesText.length - 1].addEventListener(`animationend`, () => {
+    rulesLink.classList.remove(`visually-hidden`);
+    rulesLink.style.animationName = `MoveLeftTextAnimation`;
+    rulesLink.style.animationDuration = `0.6s`;
+  });
+}
