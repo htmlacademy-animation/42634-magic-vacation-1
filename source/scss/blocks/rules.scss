@@ -1,3 +1,27 @@
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes IncrementSizeItemAnimation {
+    from {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    to {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+  }
+
+  @keyframes MoveLeftTextAnimation {
+    from {
+      transform: translateX(6rem);
+    }
+
+    to {
+      transform: translateX(0);
+    }
+  }
+}
+
 .rules {
   position: relative;
   flex-grow: 1;
@@ -144,6 +168,18 @@
     font-size: 1.2rem;
   }
 
+  &:nth-child(2)::before {
+    animation-delay: 0.2s;
+  }
+
+  &:nth-child(3)::before {
+    animation-delay: 0.4s;
+  }
+
+  &:nth-child(4)::before {
+    animation-delay: 0.6s;
+  }
+
   &::before {
     content: counter(li);
     counter-increment: li;
@@ -159,6 +195,8 @@
     border-radius: 50%;
     line-height: 5rem;
     text-align: center;
+    animation-name: IncrementSizeItemAnimation;
+    animation-duration: 0.25s;
 
     @media (max-width: $tablet) and (orientation: portrait) {
       top: 1rem;
@@ -177,8 +215,23 @@
     }
   }
 
+  &:nth-child(2) p {
+    animation-delay: 0.25s;
+  }
+
+  &:nth-child(3) p {
+    animation-delay: 0.5s;
+  }
+
+  &:nth-child(4) p {
+    animation-delay: 0.75s;
+  }
+
   p {
     margin: 0;
+    animation-name: MoveLeftTextAnimation;
+    animation-duration: 0.35s;
+    animation-delay: 0.12s;
 
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(1.4rem * 2.2);
