@@ -50,8 +50,8 @@
   z-index: 1;
 }
 
-.screen__background {
-  display: block;
+.background {
+  display: none;
   position: fixed;
   z-index: 0;
   bottom: 0;
@@ -64,6 +64,7 @@
   animation-duration: 0.4s;
 
   &.active {
+    display: block;
     height: 100%;
     z-index: 1;
   }

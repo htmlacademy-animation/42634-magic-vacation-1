@@ -8,7 +8,7 @@ export default class FullPageScroll {
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
-    this.backgroundScreen = document.querySelector(`.screen__background`);
+    this.backgroundScreen = document.querySelector(`.background`);
     this.prizesScreen = document.querySelector(`.screen--prizes`);
 
     this.activeScreen = 0;
@@ -44,20 +44,27 @@ export default class FullPageScroll {
   }
 
   changeVisibilityDisplay() {
-    this.screenElements.forEach((screen) => {
-      screen.classList.add(`screen--hidden`);
-      screen.classList.remove(`active`);
-    });
-    this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
-    this.screenElements[this.activeScreen].classList.add(`active`);
+    const currentScreen = this.screenElements[this.activeScreen];
+    const hasBackgroundScreen = currentScreen === this.prizesScreen;
+    const animationDelay = hasBackgroundScreen ? PRIZES_SHOWING_DELAY : 0;
 
-    if (this.backgroundScreen.classList.contains(`active`)) {
-      this.backgroundScreen.classList.remove(`active`);
-      setTimeout(()=> {
-        this.prizesScreen.classList.remove(`screen--hidden`);
-        this.prizesScreen.classList.add(`active`);
-      }, PRIZES_SHOWING_DELAY);
+    this.backgroundScreen.classList.remove(`active`);
+
+    if (hasBackgroundScreen) {
+      this.backgroundScreen.classList.add(`active`);
     }
+
+    clearTimeout(this.timeoutHandler);
+
+    this.timeoutHandler = setTimeout(() => {
+      this.screenElements.forEach((screen) => {
+        screen.classList.add(`screen--hidden`);
+        screen.classList.remove(`active`);
+      });
+
+      currentScreen.classList.add(`screen--hidden`);
+      currentScreen.classList.remove(`active`);
+    }, animationDelay);
   }
 
   changeActiveMenuItem() {
