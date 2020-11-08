@@ -2420,6 +2420,20 @@ img {
     .result--negative .result__title {
       width: 45rem; } }
 
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes IncrementSizeItemAnimation {
+    from {
+      width: 1.5rem;
+      height: 1.5rem; }
+    to {
+      width: 4.5rem;
+      height: 4.5rem; } }
+  @keyframes MoveLeftTextAnimation {
+    from {
+      transform: translateX(6rem); }
+    to {
+      transform: translateX(0); } } }
+
 .rules {
   position: relative;
   flex-grow: 1;
@@ -2541,6 +2555,12 @@ img {
     .rules__item {
       padding-left: 5rem;
       font-size: 1.2rem; } }
+  .rules__item:nth-child(2)::before {
+    animation-delay: 0.2s; }
+  .rules__item:nth-child(3)::before {
+    animation-delay: 0.4s; }
+  .rules__item:nth-child(4)::before {
+    animation-delay: 0.6s; }
   .rules__item::before {
     content: counter(li);
     counter-increment: li;
@@ -2555,7 +2575,9 @@ img {
     background-color: #a67ee5;
     border-radius: 50%;
     line-height: 5rem;
-    text-align: center; }
+    text-align: center;
+    animation-name: IncrementSizeItemAnimation;
+    animation-duration: 0.25s; }
     @media (max-width: 1024px) and (orientation: portrait) {
       .rules__item::before {
         top: 1rem;
@@ -2570,8 +2592,17 @@ img {
         height: 2.5rem;
         line-height: 3rem;
         font-size: 1.4rem; } }
+  .rules__item:nth-child(2) p {
+    animation-delay: 0.25s; }
+  .rules__item:nth-child(3) p {
+    animation-delay: 0.5s; }
+  .rules__item:nth-child(4) p {
+    animation-delay: 0.75s; }
   .rules__item p {
-    margin: 0; }
+    margin: 0;
+    animation-name: MoveLeftTextAnimation;
+    animation-duration: 0.35s;
+    animation-delay: 0.12s; }
     @media (max-width: 1024px) and (orientation: portrait) {
       .rules__item p {
         min-height: calc(1.4rem * 2.2); } }
@@ -2648,19 +2679,20 @@ img {
   right: 0;
   z-index: 1; }
 
-.screen__background {
-  content: "";
+.background {
+  display: none;
   position: fixed;
   z-index: 0;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 0%;
+  height: 100%;
   background-color: #5f458c;
   animation-name: MoveTop;
   animation-fill-mode: both;
   animation-duration: 0.4s; }
-  .screen__background.active {
+  .background.active {
+    display: block;
     height: 100%;
     z-index: 1; }
 
