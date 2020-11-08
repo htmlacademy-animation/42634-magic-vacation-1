@@ -1,11 +1,15 @@
 import throttle from 'lodash/throttle';
 
+const PRIZES_SHOWING_DELAY = 400;
+
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 2000;
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
+    this.backgroundScreen = document.querySelector(`.background`);
+    this.prizesScreen = document.querySelector(`.screen--prizes`);
 
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
@@ -29,7 +33,7 @@ export default class FullPageScroll {
 
   onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
-    this.activeScreen = (newIndex < 0) ? 0 : newIndex;
+    this.activeScreen = newIndex < 0 ? 0 : newIndex;
     this.changePageDisplay();
   }
 
@@ -40,12 +44,26 @@ export default class FullPageScroll {
   }
 
   changeVisibilityDisplay() {
-    this.screenElements.forEach((screen) => {
-      screen.classList.add(`screen--hidden`);
-      screen.classList.remove(`active`);
-    });
-    this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
-    this.screenElements[this.activeScreen].classList.add(`active`);
+    const currentScreen = this.screenElements[this.activeScreen];
+    const PrizesScreen = currentScreen === this.prizesScreen;
+    const backgroundDelay = PrizesScreen ? PRIZES_SHOWING_DELAY : 0;
+
+    this.backgroundScreen.classList.remove(`active`);
+
+    if (PrizesScreen) {
+      this.backgroundScreen.classList.add(`active`);
+    }
+
+    clearTimeout(this.timeoutHandler);
+
+    this.timeoutHandler = setTimeout(() => {
+      this.screenElements.forEach((screen) => {
+        screen.classList.add(`screen--hidden`);
+        screen.classList.remove(`active`);
+      });
+      currentScreen.classList.remove(`screen--hidden`);
+      currentScreen.classList.add(`active`);
+    }, backgroundDelay);
   }
 
   changeActiveMenuItem() {
