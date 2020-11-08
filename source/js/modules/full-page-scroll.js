@@ -45,12 +45,12 @@ export default class FullPageScroll {
 
   changeVisibilityDisplay() {
     const currentScreen = this.screenElements[this.activeScreen];
-    const hasBackgroundScreen = currentScreen === this.prizesScreen;
-    const animationDelay = hasBackgroundScreen ? PRIZES_SHOWING_DELAY : 0;
+    const PrizesScreen = currentScreen === this.prizesScreen;
+    const backgroundDelay = PrizesScreen ? PRIZES_SHOWING_DELAY : 0;
 
     this.backgroundScreen.classList.remove(`active`);
 
-    if (hasBackgroundScreen) {
+    if (PrizesScreen) {
       this.backgroundScreen.classList.add(`active`);
     }
 
@@ -61,10 +61,9 @@ export default class FullPageScroll {
         screen.classList.add(`screen--hidden`);
         screen.classList.remove(`active`);
       });
-
-      currentScreen.classList.add(`screen--hidden`);
-      currentScreen.classList.remove(`active`);
-    }, animationDelay);
+      currentScreen.classList.remove(`screen--hidden`);
+      currentScreen.classList.add(`active`);
+    }, backgroundDelay);
   }
 
   changeActiveMenuItem() {
